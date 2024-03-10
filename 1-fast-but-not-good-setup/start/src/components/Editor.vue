@@ -2,7 +2,13 @@
 import { onMounted, reactive } from 'vue';
 import { useRoute } from 'vue-router'
 import { snarkdownEnhanced as snarkdown } from '../util';
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, Firestore } from "firebase/firestore";
+import { config } from '../config';
 
+const firebaseApp = initializeApp(config.firebase); // Initialize Firebase
+const firebase = getFirestore(firebaseApp)
+const markdownCol = getFirestore(firestore, 'markdowns')
 const route = useRoute();
 const state = reactive({ });
 onMounted(() => {
